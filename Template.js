@@ -12,7 +12,7 @@ module.exports = Example;
 
 Example.prototype.start = function () {
   // Replace Functions. This is called by PluginHandler
-  this.Logger("HI"); // Says Hi
+  this.Logger("HI", this.name); // Says Hi
   this.PluginHandler.addCommand(name, function(gameServer, split) {
     var id = split[1];
     // Command Stuff
