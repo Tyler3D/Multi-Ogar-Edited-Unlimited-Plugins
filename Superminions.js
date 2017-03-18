@@ -11,7 +11,7 @@ function Super_Minions (gameServer, PluginHandler, Logger) {
 	this.Logger = Logger;
 	this.name = "Super Minions";
 	this.author = "\x1b[36mAndrews54757\u001B[1m\u001B[32m"; // Ported by Tyler3D
-	this.version = "1.0.0";
+	this.version = "1.0.1";
 }
 
 module.exports = Super_Minions;
@@ -66,8 +66,12 @@ Super_Minions.prototype.start = function() {
     var s = new FakeSocket(this.gameServer);
     s.playerTracker = new MinionPlayer(this.gameServer, s, owner);
     s.packetHandler = new PacketHandler(this.gameServer, s);
+    try {
     s.playerTracker.spawnmass = special.m;
     s.playerTracker.customspeed = special.s;
+	} catch (e) {
+
+	}
     s.playerTracker.owner = owner;
     // Add to client list
     this.gameServer.clients.push(s);
