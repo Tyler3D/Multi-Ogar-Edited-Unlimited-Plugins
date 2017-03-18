@@ -11,7 +11,7 @@ function Super_Minions (gameServer, PluginHandler, Logger) {
 	this.Logger = Logger;
 	this.name = "Super Minions";
 	this.author = "\x1b[36mAndrews54757\u001B[1m\u001B[32m"; // Ported by Tyler3D
-	this.version = "1.0.1";
+	this.version = "1.0.2";
 }
 
 module.exports = Super_Minions;
@@ -126,5 +126,58 @@ Super_Minions.prototype.start = function() {
 			}
 		}
 
+	});
+	this.PluginHandler.addPlayerCommand("superminion", function(PlayerCommand, args, playerTracker, gameServer) {
+		var num = args[1];
+		var mass = parseInt(args[2]);
+		var speed = parseInt(args[3]);
+		var id = args[4];
+		var name = args.slice(5, args.length).join(' ');
+		var spawnmass = Math.sqrt(mass * 100);
+ 		this.gameServer = gameServer;
+ 		if (!isNaN(parseInt(id))) {
+		for (var i in this.gameServer.clients) {
+			var client = this.gameServer.clients[i].playerTracker;
+			if (client.pID == id) {
+                if (num == "remove") {
+                    client.minionControl = false;
+                    client.miQ = 0;
+					this.gameServer.sendChatMessage(null, playerTracker, "[Super Minions] Succesfully removed super minions for " + client.getFriendlyName())
+					var text = playerTracker._name + " gave you " + add + " Super Minions.";
+                    this.gameServer.sendChatMessage(null, client, text);
+				} else {
+					num = (isNaN(num)) ? num = 1 : num = num;
+					spawnmass = (isNaN(spawnmass)) ? spawnmass = 0 : spawnmass = spawnmass;
+					speed = (isNaN(speed)) ? speed = 1 : speed = speed;
+					client.minionControl = true;
+					var args = {m: spawnmass, s: speed};
+					this.gameServer.sendChatMessage(null, playerTracker, "[Super Minions] Added " + num + " Super Minions for " + client.getFriendlyName());
+					var text = playerTracker._name + " gave you " + add + " Super Minions.";
+                    this.gameServer.sendChatMessage(null, client, text);
+					for (var i = 0; i < num; i++) {
+						this.gameServer.bots.addMinion(client, name, args);
+					}
+					
+					}
+				}
+			}
+		} else {
+			this.gameServer.sendChatMessage(null, playerTracker, "[Super Minions] Warn: missing ID arguments. This will give you super minions!");
+			if (num == "remove") {
+				playerTracker.minionControl = false;
+				playerTracker.miQ = 0;
+			} else {
+				num = parseInt(num);
+				num = (isNaN(num)) ? num = 1 : num = num;
+				spawnmass = (isNaN(spawnmass)) ? spawnmass = 0 : spawnmass = spawnmass;
+				speed = (isNaN(speed)) ? speed = 1 : speed = speed;
+				playerTracker.minionControl = true;
+				var args = {m: spawnmass, s: speed};
+				this.gameServer.sendChatMessage(null, playerTracker, "[Super Minions] Added " + num + " Minions for " + playerTracker._name);
+				for (var i = 0; i < num; i++) {
+					this.gameServer.bots.addMinion(playerTracker, name, args);
+				}
+			}
+		}
 	});
 }
