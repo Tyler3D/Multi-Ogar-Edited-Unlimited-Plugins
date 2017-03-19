@@ -11,7 +11,7 @@ function Super_Minions (gameServer, PluginHandler, Logger) {
 	this.Logger = Logger;
 	this.name = "Super Minions";
 	this.author = "\x1b[36mAndrews54757\u001B[1m\u001B[32m"; // Ported by Tyler3D
-	this.version = "1.0.2";
+	this.version = "1.0.3";
 }
 
 module.exports = Super_Minions;
