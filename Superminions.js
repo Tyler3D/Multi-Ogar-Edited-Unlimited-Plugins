@@ -128,6 +128,10 @@ Super_Minions.prototype.start = function() {
 
 	});
 	this.PluginHandler.addPlayerCommand("superminion", function(PlayerCommand, args, playerTracker, gameServer) {
+		if (playerTracker.userRole != 4) {
+		   this.gameServer.sendChatMessage(null, playerTracker, "ERROR: ACCESS DENIED")	
+		   return;
+		}
 		var num = args[1];
 		var mass = parseInt(args[2]);
 		var speed = parseInt(args[3]);
