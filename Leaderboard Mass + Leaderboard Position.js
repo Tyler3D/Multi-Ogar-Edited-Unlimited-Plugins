@@ -7,7 +7,8 @@ function Leaderboard (gameServer, PluginHandler, Logger) {
 	this.Logger = Logger;
 	this.name = "Leaderboard Mass and Position";
 	this.author = "Tyler3D";
-	this.version = "1.0.0";
+	this.version = "1.0.1";
+	this.active = true;
 }
 
 module.exports = Leaderboard;
