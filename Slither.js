@@ -5,8 +5,9 @@ function Slither (gameServer, PluginHandler, Logger) {
 	this.gameServer = gameServer;
 	this.name = "Slither";
 	this.author = "Tyler3D";
-	this.version = "1.0.0";
+	this.version = "1.0.1";
 	this.Logger = Logger;
+	this.active = true;
 }
 
 module.exports = Slither;
