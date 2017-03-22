@@ -12,6 +12,7 @@ function AutoRestart (gameServer, pluginHandler, logger) {
     this.time = (new Date).getTime();
     this.timeleft = this.restartInterval;
     this.fake_player = new PlayerTracker();
+    this.active = true;
 }
 
 module.exports = AutoRestart;
