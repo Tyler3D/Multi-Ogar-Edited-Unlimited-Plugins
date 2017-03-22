@@ -4,7 +4,7 @@ var PlayerTracker = require('../PlayerTracker');
 function AutoRestart (gameServer, pluginHandler, logger) {
     this.name = "AutoRestart";
     this.author = "Tyler3D";
-    this.version = "1.0.1";
+    this.version = "1.0.2";
     this.gameServer = gameServer;
     this.pluginHandler = pluginHandler;
     this.Logger = logger;
